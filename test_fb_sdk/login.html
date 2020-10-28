@@ -1,0 +1,70 @@
+<!-- localhost:5500 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '358408568699788',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v8.0'
+            });
+            
+            //   FB.AppEvents.logPageView();   
+            
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });    
+            
+        };
+        
+        const statusChangeCallback = (response)=>{
+            console.log('response',response)
+        }
+
+        const checkLoginState = ()=>{
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
+        
+        // chen script js vao web
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+
+         
+    </script>
+
+
+    <fb:login-button 
+        scope="public_profile,email"
+        onlogin="checkLoginState();"
+        
+        class="fb-login-button" data-size="large" data-button-type="continue_with" 
+        data-layout="default" data-auto-logout-link="false" 
+        data-use-continue-as="false" data-width=""
+    >
+    </fb:login-button>
+
+
+
+    
+
+    
+    
+</body>
+</html>
+
+
+

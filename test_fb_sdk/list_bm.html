@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list bm</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+
+</head>
+<body>
+    <!-- list bm -->
+    
+    <div id="app">
+        Danh sach tat ca cac bm
+        <ul v-for="bm in list_bm">
+            <li>bm_id : <b>{{bm["id"]}}</b> and bm_name <b>{{bm["name"]}}</b></li>
+
+            <template v-if="list_ads_group[bm['id']]">
+                <ul v-for="ads_group in list_ads_group[bm['id']]">
+                    <li>account_id : {{ads_group['id']}}</li>
+                </ul>
+            </template>
+        </ul>
+
+        
+
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            msg:'nghiahsgsz',
+            list_bm : [
+                // {
+                //     id: "2237404183142012",
+                //     name: "Công Ty Cổ Phần Tập Đoàn Meey Land"
+                // },
+                // {
+                //     id: "1791685387796352",
+                //     name: "Nghiahsgs11"
+                // },
+                // {
+                //     id: "1093589724077440",
+                //     name: "Nghiahsgs"
+                // },
+                // {
+                //     id: "357782781672762",
+                //     name: "Kitori"
+                // },
+                // {
+                //     id: "131506724446134",
+                //     name: "Hồng Đảm Shop"
+                // }
+            ],
+            list_ads_group : {},
+        },
+        methods:{
+            async get_ads_group(bm_id){
+                const headers = {
+                'x-requested-with':'XMLHttpRequest',
+                // 'x-xsrf-token':'eyJpdiI6Ikl1R1dpUFZTRW5qWGoxUXZmVGQzNXc9PSIsInZhbHVlIjoiOW5PRGtQS0N4Z1VPN0pJWi9PY21DZ3NGaWpJem9UTFdwemFYV1kyaXBtd1J6SnNpLzhzdnh4eDQvYnQ4MU0zYlpTM0N0V2N0a1ZoZXlKUTVSeG04S2VWbmZtV0U1blF1SnV5OUdUZy9MYmdSbC83azdqVFNRaldCVlNZRXY0THYiLCJtYWMiOiJmNjZjMmZkOWEyMzQ4OTU0MDRmNjJkYThkNzgxNDFkY2M5MzM4MTllMTNiOGY2NmY2MjQ5MGM5ZjQxZmQ5OGE0In0='
+                }
+
+                url = `http://localhost:3000/list_ad_accounts/${bm_id}`
+                res = await axios.get(url,{headers:headers})
+                this.list_ads_group[bm_id] = res['data']['data']
+            }
+        },
+        async mounted(){
+            console.log('mounted')
+            const headers = {
+                'x-requested-with':'XMLHttpRequest',
+                // 'x-xsrf-token':'eyJpdiI6Ikl1R1dpUFZTRW5qWGoxUXZmVGQzNXc9PSIsInZhbHVlIjoiOW5PRGtQS0N4Z1VPN0pJWi9PY21DZ3NGaWpJem9UTFdwemFYV1kyaXBtd1J6SnNpLzhzdnh4eDQvYnQ4MU0zYlpTM0N0V2N0a1ZoZXlKUTVSeG04S2VWbmZtV0U1blF1SnV5OUdUZy9MYmdSbC83azdqVFNRaldCVlNZRXY0THYiLCJtYWMiOiJmNjZjMmZkOWEyMzQ4OTU0MDRmNjJkYThkNzgxNDFkY2M5MzM4MTllMTNiOGY2NmY2MjQ5MGM5ZjQxZmQ5OGE0In0='
+            }
+
+            let url = `http://localhost:3000/list_bm`
+            let res = await axios.get(url,{headers:headers})
+            // console.log(res)
+            this.list_bm = res['data']['data']
+            
+            const kq = {}
+            for(let bm of this.list_bm){
+                kq[bm.id] = ''
+            }
+            this.list_ads_group = kq
+
+            for(let bm of this.list_bm){
+                this.get_ads_group(bm.id)
+            }
+
+            
+
+        }
+    })
+</script>
+
+<!-- 'http://localhost:3000/list_bm' -->
