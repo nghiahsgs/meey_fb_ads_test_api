@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nghiahsgs</title>
+    <script src="app.js"></script>
+</head>
+<body>
+    nghiahsgs
+</body>
+</html>
+
+<script>
+window.fbAsyncInit = function() {
+    FB.init({
+    appId            : '358408568699788',
+    autoLogAppEvents : true,
+    xfbml            : true,
+    version          : 'v8.0'
+    });
+};
+console.log(FB)
+
+// get login status
+FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+});
+
+
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
