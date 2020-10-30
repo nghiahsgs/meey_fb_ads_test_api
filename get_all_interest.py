@@ -1,3 +1,6 @@
+# target audience
+# https://docs.google.com/spreadsheets/d/1VUoe_PXtsRfT_7SQH5UhbHy6BzN4xY1XXHadbswkbBA/edit#gid=0
+
 import requests
 import io
 
