@@ -59,6 +59,14 @@ if __name__ =="__main__":
     # access_token = convert_to_long_live_token(token)
     # print(access_token)
     access_token = 'EAAFFZBH9rZB4wBALzsZBZBL9OwQ5iitVJTD2ZBfF2vk85aZB2GQl4NZBTm3SlumvkAJyZAygugL2q8h8eiNFWcN1crLpgL99X7fpes1EjF179gU5kr0ZBvbJZCeATHAmyMYGgk4MOdBzbClalJ4ZCZAScndfbmFGMg93Pmk0IHNwGQCwvQZDZD'
-    
+    url = "https://graph.facebook.com/v8.0/me?fields=id,name,accounts&access_token=%s"%access_token
 
-    
+    # token page
+    # EAAFFZBH9rZB4wBANRV8koLajCKcSbDFWZBpajJZAlWYiRZB48fcyCEwEGWEReQOlKZBuuJ5j9D7plgjZBw2AX0tlS85ZActYrh9ApXX0QbJoHdtr1RmmFTcmTqCtuW5eueEph5oSuApNZAVlSJ0mFORl5xsNbYooUhSF3NzH4j7ChWZBHveZAVcZCO63
+
+    # get all post in one page
+    # https://graph.facebook.com/v8.0/me?fields=id,name,feed&access_token=EAAFFZBH9rZB4wBAFLI4PTt1tP8cWxaLF9hTkcznPhxCnVcylILu82qRfZAJepJDsdTXeVrGDi1oaGPINZBWjUdLIbUw6JRQFF8zNJkBVYGQA1WFBc9iHwby13hRTj3nqls0XxMhFl6cc5KLt5tXad48HDhVl5T4MYyPVmGKy1ZCZBRzOKSCgaf
+
+    #get detail one page
+    # https://graph.facebook.com/v8.0/106219194277553_114323280133811?fields=message,likes,comments&access_token=EAAFFZBH9rZB4wBAFLI4PTt1tP8cWxaLF9hTkcznPhxCnVcylILu82qRfZAJepJDsdTXeVrGDi1oaGPINZBWjUdLIbUw6JRQFF8zNJkBVYGQA1WFBc9iHwby13hRTj3nqls0XxMhFl6cc5KLt5tXad48HDhVl5T4MYyPVmGKy1ZCZBRzOKSCgaf
+
