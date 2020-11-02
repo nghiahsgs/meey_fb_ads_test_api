@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khởi tạo mẫu khách hàng tiềm năng</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h2>Khởi tạo mẫu khách hàng tiềm năng</h2>
+        <h3>Tên mẫu*</h3>
+        <input v-model="template_name" type="text" placeholder="Tiêu đề 1">
+        <h3>Mục tiêu chiến dịch</h3>
+        <input type="text" readonly placeholder="Tìm kiếm khách hàng tiềm năng">
+        <h3>Kiểu mẫu *</h3>
+        <select v-model="template_type">
+            <option value="">Tăng lượng khách hàng</option>
+            <option value="">Cho xác nhận lại nội dung</option>
+        </select>
+        <h3>Giới thiệu *</h3>
+        <hr>
+
+        <button>Chọn ảnh nền</button><br>
+        <input v-model="template_title" type="text" placeholder="Nhập tiêu đề"><br>
+        <textarea v-model="template_desc" name="" id="" cols="30" rows="10" placeholder="Mô tả bổ sung thông tin"></textarea>
+
+        <h3>Lựa chọn câu hỏi điền trước</h3>
+        <input type="text" placeholder="Nhập mô tả" v-model="template_desc_question"><br>
+        <input type="checkbox"> Email <br>
+        <input type="checkbox"> Full name <br>
+        <input type="checkbox"> Phone number <br>
+        <input type="checkbox"> Gender <br>
+
+        <h3>Chính sách riêng tư của doanh nghiệp</h3>
+        <input type="text" placeholder="URL trang web tự fill dự liệu khách hàng đã điền ở tab 1" v-model="template_policy_url"><br>
+        <input type="text" placeholder="Mô tả chêm cho chính sách" v-model="template_policy_desc"><br>
+
+        <h3>Hoàn thành</h3>
+        <input type="text" placeholder="Cảm ơn quý khách đã cung cấp thông tin"><br>
+        <input type="text" placeholder="Mô tả"><br>
+        <select>
+            <option value="">Xem trang web</option>
+            <option value="">Gọi ngay cho chúng tôi</option>
+        </select>
+        <br>
+
+        <input type="text" placeholder="Tên nút kêu gọi hành động"><br>
+        <input type="text" placeholder="URL trang web tự fill dữ liệu đã làm ở tab 1 cho phép chỉnh sửa lại"><br>
+
+
+
+    </div>
+</body>
+</html>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            template_name:'',
+            template_type:'',
+            template_title:'',
+            template_desc:'',
+            template_desc_question:'',
+            template_policy_url:'',
+            template_policy_desc:'',
+        
+        },
+        methods:{
+         
+        }
+    })
+</script>

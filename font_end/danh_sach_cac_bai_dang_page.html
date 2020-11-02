@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách các bài đăng</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <select>
+            <option value="">Tất cả bài viết</option>
+            <option value="">Bài viết đã đăng</option>
+            <option value="">Bài viết quảng cáo</option>
+        </select>
+
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>ID bài viết</th>
+                <th>Bài viết</th>
+                <th>Ngày tạo</th>
+                <th>Lượt thích</th>
+                <th>Số bình luận</th>
+                <th>Số chia sẻ</th>
+            </tr>
+
+            <tr v-for="post in list_post">
+                <td>{{post['id']}}</td>
+                <td>{{post['content']}}</td>
+                <td>{{post['created_at']}}</td>
+                <td>{{post['nb_likes']}}</td>
+                <td>{{post['nb_comments']}}</td>
+                <td>{{post['nb_shares']}}</td>
+            </tr>
+        </table>
+    </div>
+<body>
+</html>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            msg:'nghiahsgs',
+            list_post:[
+                {
+                    id:'111',
+                    content:'Nguyen ba nghia',
+                    created_at:'15-15-2020',
+                    nb_likes:20,
+                    nb_comments:20,
+                    nb_shares:20,
+               },
+               {
+                    id:'111',
+                    content:'Nguyen ba nghia',
+                    created_at:'15-15-2020',
+                    nb_likes:20,
+                    nb_comments:20,
+                    nb_shares:20,
+               } 
+            ]
+        }
+    })
+</script>

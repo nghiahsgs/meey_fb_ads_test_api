@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mẫu quảng cáo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <!-- {{name}} -->
+        <h3>Upload hình ảnh</h3>
+        <input type="file" @change="onFileChange">
+
+        <div v-for='(img,i) in list_img'>
+            <img :src="img.src" width="50px" height="50px">
+            <p>{{img.name}}</p>
+            <button @click="handle_close(i)">Delete</button>
+        </div>
+    </div>    
+</body>
+</html>
+
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            current_img:{
+                src:'',
+                name:''
+            },
+            name:'nghia',
+            list_img : [
+                {
+                    src:'1.PNG',
+                    name:'ảnh 1'
+                },
+                {
+                    src:'2.PNG',
+                    name:'ảnh 2'
+                }
+            ]
+        },
+        methods:{
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var __this = this;
+
+                reader.onload = (e) => {
+                    // __this.image = e.target.result;  //base 64 img
+                    // console.log(file.name);
+
+                    this.current_img['src'] = e.target.result
+                    this.current_img['name'] = file.name
+
+                    this.list_img = [...this.list_img, {...this.current_img}]
+
+                    this.current_img['src'] = ''
+                    this.current_img['name'] = ''
+                };
+                reader.readAsDataURL(file);
+            },
+            handle_close(i){
+                console.log(i);
+                this.list_img = this.list_img.filter((img,index) => index!==i)
+
+            }
+        }
+    })
+</script>
