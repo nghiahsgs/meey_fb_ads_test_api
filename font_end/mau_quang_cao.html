@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mẫu quảng cáo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+
+</head>
+<body>
+    <!-- list bm -->
+    <div id="app">
+        <!-- <h2>Dạng quảng cáo quay vòng</h2>
+        <div v-for='ad in list_ads'>
+            <img :src="ad.img">
+            <h3>{{ad.title}}</h3>
+            <p>{{ad.desc}}</p>
+        </div> -->
+
+
+        <h2>Dạng quảng cáo 1 hình ảnh</h2>
+        <h3>Nội dung bài đăng</h3>
+        <textarea v-model='content_post' cols="30" rows="10"></textarea>
+        <h3>Nút hành động trên quảng cáo</h3>
+        <select v-model="ad['btn_text']">
+            <option value="0">Không hiển thị nút</option>
+            <option value="1">Tìm hiểu thêm</option>
+            <option value="2">Đăng ký ngay</option>
+            <option value="3">Nhận báo giá</option>
+        </select>
+        <!-- <h3>Đường dẫn chính</h3>
+        <input type="text" placeholder="URL"> -->
+
+        <h3>Hình ảnh / Video</h3>
+        <input type="file" @change="onFileChange">
+        <h4>Tiêu đề {{ad['title'].length}}/40 ký tự</h4>
+        <input type="text" v-model="ad['title']">
+        <h4>Mô tả {{ad['desc'].length}}/200 ký tự</h4>
+        <input type="text" v-model="ad['desc']">
+        <h4>Đường dẫn cho nút hành động trên thẻ</h4>
+        <input type="text" v-model="ad['btn_link']">
+
+        <!-- <video controls="">
+		</video> -->
+
+
+        <hr>
+        <center>
+            <!-- {{content_post}} -->
+            <p v-html='content_post_html'></p>
+            <div>
+                <img :src="ad.img">
+                <!-- <video width="320" height="240" controls>
+                    <source :src="ad.img" type="video/mp4">
+                </video> -->
+
+                <h3>{{ad.title}}</h3>
+                <p>{{ad.desc}}</p>
+                <a :href="ad.btn_link" target="__blank"><button>
+                    <template v-if="ad.btn_text=='1'">
+                        Tìm hiểu thêm
+                    </template>
+                    <template v-if="ad.btn_text=='2'">
+                        Đăng ký ngay
+                    </template>
+                    <template v-if="ad.btn_text=='3'">
+                        Nhận báo giá
+                    </template>
+                </button></a>
+            </div>
+        </center>
+
+
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            content_post:'',
+            // msg:'nghiahsgsz',
+            // quảng cáo quay vòng
+            list_ads:[
+                {
+                    img:'1.PNG',
+                    title:'Tiêu đề 1',
+                    desc : 'Mô tả 1'
+                },
+                {
+                    img:'2.PNG',
+                    title:'Tiêu đề 2',
+                    desc : 'Mô tả 2'
+                }
+            ],
+
+            // quang cáo 1 hình ảnh
+            ad:{
+                img:'1.PNG',
+                title:'title của quảng cáo 1 ảnh',
+                desc:'desc của quảng cáo 1 ảnh',
+                btn_text:'1',
+                btn_link:'http://google.com'
+            }
+        },
+        computed:{
+            content_post_html(){
+                return this.content_post.replaceAll('\n','<br/>')
+            }
+        },
+        methods:{
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var __this = this;
+
+                reader.onload = (e) => {
+                    // __this.image = e.target.result;  //base 64 img
+                    console.log(e.target.result);
+                    __this.ad['img'] = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            
+        },
+        mounted(){
+            console.log('mounted')
+
+        }
+    })
+</script>
+
+<!-- 'http://localhost:3000/list_bm' -->

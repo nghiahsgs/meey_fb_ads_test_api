@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mẫu quảng cáo</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.js"></script>
+
+</head>
+<style>
+    #app {
+        text-align: center;
+    }
+    img {
+        width: 30%;
+        margin: auto;
+        display: block;
+        margin-bottom: 10px;
+    }
+    button {
+    
+    }
+</style>
+<body>
+    <!-- list bm -->
+    <div id="app">
+        <div v-if="!image">
+          <h2>Select an image</h2>
+          <input type="file" @change="onFileChange">
+        </div>
+        <div v-else>
+          <img :src="image" />
+          <button @click="removeImage">Remove image</button>
+
+          <button @click="uploadImage">Upload image</button>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            image: ''
+        },
+        methods: {
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var __this = this;
+
+                reader.onload = (e) => {
+                    __this.image = e.target.result;  //base 64 img
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImage: function (e) {
+                this.image = '';
+            },
+            uploadImage(){
+                axios.post('/image/store',{image: this.image}).then(response => {
+                   if (response.data.success) {
+                     alert(response.data.success);
+                   }
+                });
+            }
+        }
+    })
+</script>
