@@ -1,6 +1,4 @@
 import requests
-
-
 graph_api_version = 'v8.0'
 app_id = '358408568699788'
 app_secret = '70e465c562e7c7ce1f97b12dc620a30a'
@@ -51,8 +49,6 @@ bm_id = '357782781672762'
 url = "https://graph.facebook.com/%s/%s/%s?access_token=%s"%(graph_api_version,bm_id,type_user,access_token)
 data = requests.get(url).json()
 print(data)
-
-
 
 if __name__ =="__main__":
     # token = 'EAAFFZBH9rZB4wBABKZB5Y54A3TzsZBJxL81VB3EKy6KPKLAqROy6PZANplr7D8ZApPvhtqHFwE4NpoxyZAq3vBZBFhYQcpfuvwFbWHLCglXBvhjt1qh02ucdkTKqg3JXQd6TzFsk3hX1hiXbwZCUxO2ZCzBOjKZCre82v0UIX0QmkH2LSzTooZBSbEiD47TjRYEVWRGOYUvCM2MfMgZDZD'
